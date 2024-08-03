@@ -133,6 +133,10 @@ class ShoppingCart {
         return this.items.length;
     }
 
+    clearCart() {
+        
+    }
+
     calculateTaxes(amount) {
         return parseFloat(((this.taxRate/100) * amount).toFixed(2));
     }
@@ -144,7 +148,7 @@ class ShoppingCart {
         cartSubTotal.textContent = `$${subTotal.toFixed(2)}`;
         cartTaxes.textContent = `$${tax.toFixed(2)}`;
         cartTotal.textContent = `$${this.total.toFixed(2)}`;
-
+        return this.total;
     }
 };
 
@@ -155,6 +159,7 @@ const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
         btn.addEventListener("click", (event) => {
             cart.addItem(Number(event.target.id), products);
             totalNumberOfItems.textContent = cart.getCounts();
+            cart.calculateTotal();
         })
     }
 );
